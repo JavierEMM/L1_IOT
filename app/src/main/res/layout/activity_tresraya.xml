@@ -7,7 +7,7 @@
     tools:context=".Tresraya">
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/ter4"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/ter5"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/ter6"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/ter7"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/ter8"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -66,7 +66,7 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/ter9"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -83,14 +83,14 @@
         android:layout_height="21dp"
         android:layout_marginBottom="84dp"
         android:text="Tres en Raya"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/ter2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnNuevo"
         android:layout_width="145dp"
         android:layout_height="47dp"
         android:layout_marginTop="92dp"
@@ -99,22 +99,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10"
+        app:layout_constraintTop_toBottomOf="@+id/ter8"
         app:layout_constraintVertical_bias="0.045" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnEstadisticas"
         android:layout_width="148dp"
         android:layout_height="42dp"
         android:layout_marginBottom="84dp"
         android:text="Estadísticas"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/btnNuevo"
+        app:layout_constraintStart_toStartOf="@+id/btnNuevo"
+        app:layout_constraintTop_toBottomOf="@+id/btnNuevo" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/ter1"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -126,7 +126,7 @@
         app:layout_constraintVertical_bias="0.282" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/ter2"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:text="-"
@@ -138,7 +138,7 @@
         app:layout_constraintVertical_bias="0.282" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/ter3"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:layout_marginEnd="4dp"
@@ -149,5 +149,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.282" />
+
+    <TextView
+        android:id="@+id/textResultado"
+        android:layout_width="156dp"
+        android:layout_height="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNuevo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ter8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
