@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +25,51 @@ public class Memoria extends AppCompatActivity {
 
         for (int i = 0; i < list.size(); i++) {
             Log.d("msg","" + list.get(i));
+            TextView textView = obtenerBoton(i);
         }
+
+
+
+    }
+
+    public TextView obtenerBoton(int num){
+        TextView textView;
+        switch (num){
+            case 1:
+                textView=findViewById(R.id.btn1);
+            case 2:
+                textView=findViewById(R.id.btn2);
+            case 3:
+                textView=findViewById(R.id.btn3);
+            case 4:
+                textView=findViewById(R.id.btn4);
+            case 5:
+                textView=findViewById(R.id.btn5);
+            case 6:
+                textView=findViewById(R.id.btn6);
+            case 7:
+                textView=findViewById(R.id.btn7);
+            case 8:
+                textView=findViewById(R.id.btn8);
+            case 9:
+                textView=findViewById(R.id.btn9);
+            case 10:
+                textView=findViewById(R.id.btn10);
+            case 11:
+                textView=findViewById(R.id.btn11);
+            case 12:
+                textView=findViewById(R.id.btn12);
+            case 13:
+                textView=findViewById(R.id.btn13);
+            case 14:
+                textView=findViewById(R.id.btn14);
+            case 15:
+                textView=findViewById(R.id.btn15);
+            default:
+                textView=findViewById(R.id.btn16);
+        }
+
+        return textView;
     }
 
     public static ArrayList getRandomNonRepeatingIntegers(int size, int min, int max) {
