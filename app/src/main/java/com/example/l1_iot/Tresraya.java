@@ -16,20 +16,99 @@ public class Tresraya extends AppCompatActivity {
         setContentView(R.layout.activity_tresraya);
         int centinela = 2;
         for (int i = 0; i < 9; i++) {
-            Button button = findViewById(R.id.ter1);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    TextView textView1 = findViewById(R.id.ter1);
-                    String texto1 =  textView1.getText().toString();
-                    if(texto1.equals("-")){
-                        if(centinela == 2){
+            if(i==0){
+                Button button1 = findViewById(R.id.ter1);
+                button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TextView textView1 = findViewById(R.id.ter1);
+                        String texto1 =  textView1.getText().toString();
+                        if(texto1.equals("-")){
                             textView1.setText(String.valueOf("X"));
                             actualizar();
                         }
                     }
+                });
+                Button button2 = findViewById(R.id.ter2);
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TextView textView1 = findViewById(R.id.ter2);
+                        String texto1 =  textView1.getText().toString();
+                        if(texto1.equals("-")){
+                            textView1.setText(String.valueOf("X"));
+                            actualizar();
+                        }
+                    }
+                });
+                Log.d("msg","" + centinela);
+                centinela = 1;
+                Log.d("msg","fffffff");
+                Log.d("msg","" + centinela);
+            }else{
+                if(centinela==0){
+                    Button button1 = findViewById(R.id.ter1);
+                    button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            TextView textView1 = findViewById(R.id.ter1);
+                            String texto1 =  textView1.getText().toString();
+                            if(texto1.equals("-")){
+                                textView1.setText(String.valueOf("X"));
+                                actualizar();
+                            }
+                        }
+                    });
+                    Button button2 = findViewById(R.id.ter2);
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            TextView textView1 = findViewById(R.id.ter2);
+                            String texto1 =  textView1.getText().toString();
+                            if(texto1.equals("-")){
+                                textView1.setText(String.valueOf("X"));
+                                actualizar();
+                            }
+                        }
+                    });
+                    Log.d("msg","" + centinela);
+                    centinela = 1;
+                    Log.d("msg","fffffff");
+                    Log.d("msg","" + centinela);
+                }else{
+                    Button button1 = findViewById(R.id.ter1);
+                    button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            TextView textView1 = findViewById(R.id.ter1);
+                            String texto1 =  textView1.getText().toString();
+                            if(texto1.equals("-")){
+                                textView1.setText(String.valueOf("O"));
+                                actualizar();
+
+                            }
+                        }
+                    });
+                    Button button2 = findViewById(R.id.ter2);
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            TextView textView1 = findViewById(R.id.ter2);
+                            String texto1 =  textView1.getText().toString();
+                            if(texto1.equals("-")){
+                                textView1.setText(String.valueOf("O"));
+                                actualizar();
+                            }
+                        }
+                    });
+                    Log.d("msg","" + centinela);
+                    centinela = 0;
+                    Log.d("msg","fffffff");
+                    Log.d("msg","" + centinela);
                 }
-            });
+
+
+            }
         }
     }
 
