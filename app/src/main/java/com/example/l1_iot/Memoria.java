@@ -2,70 +2,136 @@ package com.example.l1_iot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class Memoria extends AppCompatActivity {
+
+    private ArrayList<String> letras;
+    private ArrayList<String> letras_confirm = new ArrayList<>();
+    private Button boton_anterior = null;
+    private Integer contador = 0;
+    private ArrayList<String> juegos = new ArrayList<>();
+    private Long instante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memoria);
-        String[] abecedario = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"};
-        List<String> listaAbc = Arrays.asList(abecedario);
-        ArrayList listPosicionesAbc = getRandomNonRepeatingIntegers(8,0,listaAbc.size());
-        Integer[] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-        List<Integer> listaNumBtn = Arrays.asList(numeros);
-        Collections.shuffle(listaNumBtn,new Random());
-        Map<String, String> dictionary = new HashMap<String, String>();
-        int contador = 0;
-        for(int i=0;i<(listPosicionesAbc.size());i++){
-            //Log.d("msg","Los valores de i son "+i);
-           // Log.d("msg","Los valores de contador son "+contador);
-            //Log.d("msg","Los valores de contador +1 son "+(contador+1));
-            //TextView btn1 = obtenerBoton(listaNumBtn.get(contador));
-            //TextView btn2 = obtenerBoton(listaNumBtn.get(contador+1));
-            String str = listaAbc.get((Integer)listPosicionesAbc.get(i));
-            Log.d("msg","La letra es "+str);
-            Log.d("msg","El orden es:"+listaNumBtn.get(contador));
-            Log.d("msg","El orden es:"+listaNumBtn.get(contador+1));
-            modificarBoton(listaNumBtn.get(contador),str);
-            modificarBoton(listaNumBtn.get(contador+1),str);
-            dictionary.put("btn"+listaNumBtn.get(contador), str);
-            dictionary.put("btn"+listaNumBtn.get(contador+1), str);
-            //btn1.setText(listaAbc.get((Integer)listPosicionesAbc.get(i)));
-            //btn2.setText(listaAbc.get((Integer)listPosicionesAbc.get(i)).toString());
-            contador+=2;
-
-
-            //Log.d("msg","El valor obtenido del boton es: "+btn1.getText().toString());
-            //Log.d("msg","El valor obtenido del boton es: "+btn2.getText().toString());
-
-        }
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                cleanButtons();
-                Log.d("msg",dictionary.get("btn3"));
+        String[] abecedario = {"A","B","C","D","E","F","G","H"};
+        seleccionarLetras(abecedario);
+        ((Button) findViewById(R.id.btnNew)).setOnClickListener(view -> {
+            if (contador != 8){
+                juegos.add("Se canceló el juego");
+                contador = 0;
             }
-        }, 1000);
-
+            seleccionarLetras(abecedario);
+        });
+        ((Button) findViewById(R.id.btnEsta)).setOnClickListener(view -> {
+            Intent intent = new Intent(Memoria.this,MemoriaEsta.class);
+            intent.putExtra("listajuegos",juegos);
+            startActivity(intent);
+        });
+    }
+    public void abrirBoton(View view){
+        Button button = (Button) view;
+        switch (button.getId()){
+            case R.id.btn1:
+                comprobarMemoria(0,button);
+                break;
+            case R.id.btn2:
+                comprobarMemoria(1,button);
+                break;
+            case R.id.btn3:
+                comprobarMemoria(2,button);
+                break;
+            case R.id.btn4:
+                comprobarMemoria(3,button);
+                break;
+            case R.id.btn5:
+                comprobarMemoria(4,button);
+                break;
+            case R.id.btn6:
+                comprobarMemoria(5,button);
+                break;
+            case R.id.btn7:
+                comprobarMemoria(6,button);
+                break;
+            case R.id.btn8:
+                comprobarMemoria(7,button);
+                break;
+            case R.id.btn9:
+                comprobarMemoria(8,button);
+                break;
+            case R.id.btn10:
+                comprobarMemoria(9,button);
+                break;
+            case R.id.btn11:
+                comprobarMemoria(10,button);
+                break;
+            case R.id.btn12:
+                comprobarMemoria(11,button);
+                break;
+            case R.id.btn13:
+                comprobarMemoria(12,button);
+                break;
+            case R.id.btn14:
+                comprobarMemoria(13,button);
+                break;
+            case R.id.btn15:
+                comprobarMemoria(14,button);
+                break;
+            default:
+                comprobarMemoria(15,button);
+                break;
+        }
+    }
+    public void comprobarMemoria(int numero, Button button){
+        if(letras_confirm.size()==0){
+            letras_confirm.add(letras.get(numero));
+            button.setText(letras.get(numero));
+            boton_anterior = button;
+        }else{
+            if(letras_confirm.get(0).equals(letras.get(numero))){
+                button.setText(letras.get(numero));
+                contador++;
+                if(contador == 8){
+                    TextView view = findViewById(R.id.mensajeFinal);
+                    Long final_tiempo = System.currentTimeMillis();
+                    Long resta_tiempos= (final_tiempo - instante)/60;
+                    view.setText("GANASTE CON : " + resta_tiempos +" Minutos");
+                    contador = 0;
+                    juegos.add("Se termino el juego en " +resta_tiempos + " minutos");
+                }
+            }else{
+                button.setText(letras.get(numero));
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boton_anterior.setText("-");
+                        button.setText("-");
+                    }
+                }, 1000);
+            }
+            letras_confirm = new ArrayList<>();
+        }
     }
 
-    public void cleanButtons (){
-        for(int i=1;i<=16;i++){
+    public void cleanButtons (int size){
+        for(int i=0;i<size;i++){
             modificarBoton(i,"-");
         }
     }
@@ -74,70 +140,78 @@ public class Memoria extends AppCompatActivity {
         int n = num;
         TextView textView;
         switch (n){
-            case 1:
+            case 0:
                 textView=findViewById(R.id.btn1);
                 break;
-            case 2:
+            case 1:
                 textView=findViewById(R.id.btn2);
                 break;
-            case 3:
+            case 2:
                 textView=findViewById(R.id.btn3);
                 break;
-            case 4:
+            case 3:
                 textView=findViewById(R.id.btn4);
                 break;
-            case 5:
+            case 4:
                 textView=findViewById(R.id.btn5);
                 break;
-            case 6:
+            case 5:
                 textView=findViewById(R.id.btn6);
                 break;
-            case 7:
+            case 6:
                 textView=findViewById(R.id.btn7);
                 break;
-            case 8:
+            case 7:
                 textView=findViewById(R.id.btn8);
                 break;
-            case 9:
+            case 8:
                 textView=findViewById(R.id.btn9);
                 break;
-            case 10:
+            case 9:
                 textView=findViewById(R.id.btn10);
                 break;
-            case 11:
+            case 10:
                 textView=findViewById(R.id.btn11);
                 break;
-            case 12:
+            case 11:
                 textView=findViewById(R.id.btn12);
                 break;
-            case 13:
+            case 12:
                 textView=findViewById(R.id.btn13);
                 break;
-            case 14:
+            case 13:
                 textView=findViewById(R.id.btn14);
                 break;
-            case 15:
+            case 14:
                 textView=findViewById(R.id.btn15);
                 break;
             default:
                 textView=findViewById(R.id.btn16);
                 break;
         }
-
         textView.setText(str);
     }
 
-    public static ArrayList getRandomNonRepeatingIntegers(int size, int min, int max) {
-        ArrayList numbers = new ArrayList();
-        Random random = new Random();
-        while (numbers.size() < size) {
-            //Get Random numbers between range
-            int randomNumber = random.nextInt((max - min) + 1) + min;
-            //Check for duplicate values
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
+    public void seleccionarLetras(String [] cadena){
+        instante = System.currentTimeMillis();
+        ArrayList<String> lista = new ArrayList<>();
+        List<String> chocolatear = Arrays.asList(cadena);
+        Collections.shuffle(chocolatear,new Random());
+        for(int i = 0;i<8;i++){
+            lista.add(chocolatear.get(i));
+            lista.add(chocolatear.get(i));
         }
-        return numbers;
+        Collections.shuffle(lista,new Random());
+        letras = lista;
+        for(int i = 0;i<lista.size();i++){
+            modificarBoton(i,lista.get(i));
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                cleanButtons(lista.size());
+            }
+        }, 1000);
     }
 }
