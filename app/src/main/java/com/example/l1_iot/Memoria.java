@@ -3,13 +3,16 @@ package com.example.l1_iot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Memoria extends AppCompatActivity {
@@ -24,7 +27,7 @@ public class Memoria extends AppCompatActivity {
         Integer[] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
         List<Integer> listaNumBtn = Arrays.asList(numeros);
         Collections.shuffle(listaNumBtn,new Random());
-
+        Map<String, String> dictionary = new HashMap<String, String>();
         int contador = 0;
         for(int i=0;i<(listPosicionesAbc.size());i++){
             //Log.d("msg","Los valores de i son "+i);
@@ -38,6 +41,8 @@ public class Memoria extends AppCompatActivity {
             Log.d("msg","El orden es:"+listaNumBtn.get(contador+1));
             modificarBoton(listaNumBtn.get(contador),str);
             modificarBoton(listaNumBtn.get(contador+1),str);
+            dictionary.put("btn"+listaNumBtn.get(contador), str);
+            dictionary.put("btn"+listaNumBtn.get(contador+1), str);
             //btn1.setText(listaAbc.get((Integer)listPosicionesAbc.get(i)));
             //btn2.setText(listaAbc.get((Integer)listPosicionesAbc.get(i)).toString());
             contador+=2;
@@ -48,8 +53,21 @@ public class Memoria extends AppCompatActivity {
 
         }
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                cleanButtons();
+                Log.d("msg",dictionary.get("btn1"));
+            }
+        }, 1000);
 
+    }
 
+    public void cleanButtons (){
+        for(int i=1;i<=16;i++){
+            modificarBoton(i,"-");
+        }
     }
 
     public void modificarBoton(Integer num,String str){
