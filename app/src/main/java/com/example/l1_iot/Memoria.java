@@ -58,7 +58,7 @@ public class Memoria extends AppCompatActivity {
             @Override
             public void run() {
                 cleanButtons();
-                Log.d("msg",dictionary.get("btn1"));
+                Log.d("msg",dictionary.get("btn2"));
             }
         }, 1000);
 
