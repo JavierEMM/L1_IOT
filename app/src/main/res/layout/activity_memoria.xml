@@ -234,7 +234,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="364dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/textViewTitle2"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="@+id/textViewTitle2"

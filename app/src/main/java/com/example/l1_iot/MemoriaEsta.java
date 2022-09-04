@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ public class MemoriaEsta extends AppCompatActivity {
         }else{
             view.setText("Aun no hay juegos disponibles");
         }
-
+        ((Button) findViewById(R.id.btnNew2)).setOnClickListener(view1 -> {
+            Intent intent2 = new Intent(MemoriaEsta.this,Memoria.class);
+            intent2.putExtra("listajuegos",listajuegos);
+            startActivity(intent2);
+        });
     }
 }

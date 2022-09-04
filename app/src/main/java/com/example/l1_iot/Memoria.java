@@ -24,22 +24,33 @@ public class Memoria extends AppCompatActivity {
     private Button boton_anterior = null;
     private Integer contador = 0;
     private ArrayList<String> juegos = new ArrayList<>();
+    private Integer numeroIntentos = 0;
     private Long instante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent2 = this.getIntent();
+        if(intent2.getStringArrayListExtra("listajuegos") != null){
+            juegos = intent2.getStringArrayListExtra("listajuegos");
+        }
         setContentView(R.layout.activity_memoria);
         String[] abecedario = {"A","B","C","D","E","F","G","H"};
         seleccionarLetras(abecedario);
         ((Button) findViewById(R.id.btnNew)).setOnClickListener(view -> {
-            if (contador != 8){
+            if (contador != 8 && numeroIntentos != 0){
                 juegos.add("Se canceló el juego");
                 contador = 0;
             }
+            TextView view2 = findViewById(R.id.mensajeFinal);
+            view2.setText("");
             seleccionarLetras(abecedario);
         });
         ((Button) findViewById(R.id.btnEsta)).setOnClickListener(view -> {
+            if (contador != 8 && numeroIntentos != 0){
+                juegos.add("Se canceló el juego");
+                contador = 0;
+            }
             Intent intent = new Intent(Memoria.this,MemoriaEsta.class);
             intent.putExtra("listajuegos",juegos);
             startActivity(intent);
@@ -99,6 +110,7 @@ public class Memoria extends AppCompatActivity {
         }
     }
     public void comprobarMemoria(int numero, Button button){
+        numeroIntentos++;
         if(letras_confirm.size()==0){
             letras_confirm.add(letras.get(numero));
             button.setText(letras.get(numero));
@@ -110,10 +122,12 @@ public class Memoria extends AppCompatActivity {
                 if(contador == 8){
                     TextView view = findViewById(R.id.mensajeFinal);
                     Long final_tiempo = System.currentTimeMillis();
-                    Long resta_tiempos= (final_tiempo - instante)/60;
+                    Long resta_tiempos= (final_tiempo - instante)/60000;
                     view.setText("GANASTE CON : " + resta_tiempos +" Minutos");
-                    contador = 0;
                     juegos.add("Se termino el juego en " +resta_tiempos + " minutos");
+                    numeroIntentos = 0;
+                    contador = 0;
+
                 }
             }else{
                 button.setText(letras.get(numero));
