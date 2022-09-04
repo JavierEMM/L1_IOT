@@ -18,6 +18,9 @@
             android:exported="false"
             android:parentActivityName=".Memoria"/>
         <activity
+            android:name=".EstadisticasTresEnRaya"
+            android:exported="false" />
+        <activity
             android:name=".Tresraya"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
