@@ -8,12 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Tresraya extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tresraya);
+
+        Map<String, String> dictionary = new HashMap<String, String>();
 
         Button button1 = findViewById(R.id.ter1);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -26,7 +31,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button2 = findViewById(R.id.ter2);
@@ -40,7 +46,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button3 = findViewById(R.id.ter3);
@@ -54,7 +61,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button4 = findViewById(R.id.ter4);
@@ -68,7 +76,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button5 = findViewById(R.id.ter5);
@@ -82,7 +91,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button6 = findViewById(R.id.ter6);
@@ -96,7 +106,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button7 = findViewById(R.id.ter7);
@@ -110,7 +121,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button8 = findViewById(R.id.ter8);
@@ -124,7 +136,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
         Button button9 = findViewById(R.id.ter9);
@@ -138,7 +151,8 @@ public class Tresraya extends AppCompatActivity {
                 }else{
                     textView1.setText(String.valueOf("O"));
                 }
-                actualizar();
+                int i = actualizar();
+                agregarJuego(dictionary,i);
             }
         });
 
@@ -146,7 +160,16 @@ public class Tresraya extends AppCompatActivity {
         btnNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restaurar();
+                int i = restaurar();
+                agregarJuego(dictionary,i);
+            }
+        });
+
+        Button btnEstadisticas = findViewById(R.id.btnEstadisticas);
+        btnEstadisticas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
@@ -184,7 +207,7 @@ public class Tresraya extends AppCompatActivity {
         }
     }
 
-    public void actualizar(){
+    public int actualizar(){
         int centinela = 0;
         String valor = "";
         TextView textView1 = findViewById(R.id.ter1);
@@ -210,35 +233,35 @@ public class Tresraya extends AppCompatActivity {
             centinela = 1;
             valor = textView1.getText().toString();
         }
-        if(text4.equals(text5) && text4.equals(text6) && !(text4.equals("-"))){
+        else if(text4.equals(text5) && text4.equals(text6) && !(text4.equals("-"))){
             centinela = 1;
             valor = textView4.getText().toString();
         }
-        if(text7.equals(text8) && text7.equals(text9) && !(text7.equals("-"))){
+        else if(text7.equals(text8) && text7.equals(text9) && !(text7.equals("-"))){
             centinela = 1;
             valor = textView7.getText().toString();
         }
-        if(text1.equals(text4) && text1.equals(text7) && !(text1.equals("-"))){
+        else if(text1.equals(text4) && text1.equals(text7) && !(text1.equals("-"))){
             centinela = 1;
             valor = textView1.getText().toString();
         }
-        if(text2.equals(text5) && text2.equals(text8) && !(text2.equals("-"))){
+        else if(text2.equals(text5) && text2.equals(text8) && !(text2.equals("-"))){
             centinela = 1;
             valor = textView2.getText().toString();
         }
-        if(text3.equals(text6) && text3.equals(text9) && !(text3.equals("-"))){
+        else if(text3.equals(text6) && text3.equals(text9) && !(text3.equals("-"))){
             centinela = 1;
             valor = textView3.getText().toString();
         }
-        if(text1.equals(text5) && text1.equals(text9) && !(text1.equals("-"))){
+        else if(text1.equals(text5) && text1.equals(text9) && !(text1.equals("-"))){
             centinela = 1;
             valor = textView1.getText().toString();
         }
-        if(text3.equals(text5) && text3.equals(text7) && !(text3.equals("-"))){
+        else if(text3.equals(text5) && text3.equals(text7) && !(text3.equals("-"))){
             centinela = 1;
             valor = textView3.getText().toString();
         }
-        if(!(text1.equals("-"))&&!(text2.equals("-"))&&!(text3.equals("-"))&&!(text4.equals("-"))&&!(text5.equals("-"))&&!(text6.equals("-"))&&!(text7.equals("-"))&&!(text8.equals("-"))&&!(text9.equals("-"))){
+        else if(!(text1.equals("-"))&&!(text2.equals("-"))&&!(text3.equals("-"))&&!(text4.equals("-"))&&!(text5.equals("-"))&&!(text6.equals("-"))&&!(text7.equals("-"))&&!(text8.equals("-"))&&!(text9.equals("-"))){
             centinela = -1;
             valor = textView1.getText().toString();
         }
@@ -247,16 +270,44 @@ public class Tresraya extends AppCompatActivity {
             TextView textView = findViewById(R.id.textResultado);
             textView.setText(String.valueOf("Ganó " + valor));
             inhabilitar();
+            if(valor.equals("X")){
+                return 2;
+            }else{
+                return 3;
+            }
         }
         if(centinela == -1){
             TextView textView = findViewById(R.id.textResultado);
             textView.setText(String.valueOf("Empate"));
             inhabilitar();
+            return 1;
         }
+        return 0;
     }
 
-    public void restaurar(){
-        habilitar();
+    public int restaurar(){
+
+        int i = actualizar();
+
+        Button button1 = findViewById(R.id.ter1);
+        button1.setEnabled(true);
+        Button button2 = findViewById(R.id.ter2);
+        button2.setEnabled(true);
+        Button button3 = findViewById(R.id.ter3);
+        button3.setEnabled(true);
+        Button button4 = findViewById(R.id.ter4);
+        button4.setEnabled(true);
+        Button button5 = findViewById(R.id.ter5);
+        button5.setEnabled(true);
+        Button button6 = findViewById(R.id.ter6);
+        button6.setEnabled(true);
+        Button button7 = findViewById(R.id.ter7);
+        button7.setEnabled(true);
+        Button button8 = findViewById(R.id.ter8);
+        button8.setEnabled(true);
+        Button button9 = findViewById(R.id.ter9);
+        button9.setEnabled(true);
+
         TextView textView1 = findViewById(R.id.ter1);
         textView1.setText(String.valueOf("-"));
         TextView textView2 = findViewById(R.id.ter2);
@@ -277,6 +328,11 @@ public class Tresraya extends AppCompatActivity {
         textView9.setText(String.valueOf("-"));
         TextView textView = findViewById(R.id.textResultado);
         textView.setText(String.valueOf(""));
+
+        if(i==0){
+            return 4;
+        }
+        return 0;
     }
 
     public void inhabilitar(){
@@ -300,24 +356,21 @@ public class Tresraya extends AppCompatActivity {
         button9.setEnabled(false);
     }
 
-    public void habilitar(){
-        Button button1 = findViewById(R.id.ter1);
-        button1.setEnabled(true);
-        Button button2 = findViewById(R.id.ter2);
-        button2.setEnabled(true);
-        Button button3 = findViewById(R.id.ter3);
-        button3.setEnabled(true);
-        Button button4 = findViewById(R.id.ter4);
-        button4.setEnabled(true);
-        Button button5 = findViewById(R.id.ter5);
-        button5.setEnabled(true);
-        Button button6 = findViewById(R.id.ter6);
-        button6.setEnabled(true);
-        Button button7 = findViewById(R.id.ter7);
-        button7.setEnabled(true);
-        Button button8 = findViewById(R.id.ter8);
-        button8.setEnabled(true);
-        Button button9 = findViewById(R.id.ter9);
-        button9.setEnabled(true);
+    public void agregarJuego(Map<String, String> dictionary, int i){
+        int cant = dictionary.size();
+        if(i==1){
+            dictionary.put("Juego "+ (cant+1),"Empate");
+            Log.d("msg","Empate");
+        }else if(i==2){
+            dictionary.put("Juego "+ (cant+1),"Ganó X");
+            Log.d("msg","Gano X");
+        }else if(i==3){
+            dictionary.put("Juego "+ (cant+1),"Ganó O");
+            Log.d("msg","Gano O");
+        }else if(i==4){
+            dictionary.put("Juego "+ (cant+1),"Canceló");
+            Log.d("msg","Cancelo");
+        }
+        Log.d("msg","" + dictionary.size());
     }
 }
